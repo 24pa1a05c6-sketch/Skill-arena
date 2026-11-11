@@ -1,0 +1,37 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Profile Avatars & Images
+    match /users/{userId}/avatars/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId) && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    // User Certificates & Portfolios
+    match /users/{userId}/certificates/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId) && request.resource.size < 10 * 1024 * 1024;
+    }
+
+    // Public Course Assets & Banners
+    match /courses/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if request.auth.token.role == 'admin';
+    }
+
+    // Public Tournament Banners
+    match /tournaments/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if request.auth.token.role == 'admin';
+    }
+  }
+}

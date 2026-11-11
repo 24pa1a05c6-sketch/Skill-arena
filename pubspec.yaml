@@ -1,0 +1,56 @@
+name: skill_arena
+description: "Learn. Compete. Prove. Grow. — The 2030 Skill Arena."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^15.1.2
+
+  # Design & Typography
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.2
+  lucide_icons: ^0.257.0
+  vector_math: ^2.1.4
+
+  # Firebase Enterprise Stack
+  firebase_core: ^3.12.0
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  firebase_storage: ^12.4.4
+  firebase_messaging: ^15.2.4
+  firebase_analytics: ^11.4.3
+  firebase_crashlytics: ^4.3.4
+  firebase_remote_config: ^5.3.4
+
+  # Data & Utilities
+  equatable: ^2.0.7
+  shared_preferences: ^2.5.3
+  http: ^1.2.0
+  crypto: ^3.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/animations/
+    - assets/fonts/
+    - assets/icons/
+    - assets/images/
+    - assets/illustrations/
+    - assets/svgs/
